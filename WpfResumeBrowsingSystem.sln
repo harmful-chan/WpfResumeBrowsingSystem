@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfResumeBrowsingSystem", "WpfResumeBrowsingSystem\WpfResumeBrowsingSystem.csproj", "{DFD799DD-E9B1-44EC-B4EA-8560E3C77391}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfResumeBrowsingSystem.DBL", "WpfResumeBrowsingSystem.DBL\WpfResumeBrowsingSystem.DBL.csproj", "{24505B2B-0447-431D-A788-2CD8927037C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfResumeBrowsingSystem.Test", "WpfResumeBrowsingSystem.Test\WpfResumeBrowsingSystem.Test.csproj", "{D634A1FD-C6D8-49AA-8F73-52D23CB0C41F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DFD799DD-E9B1-44EC-B4EA-8560E3C77391}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFD799DD-E9B1-44EC-B4EA-8560E3C77391}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFD799DD-E9B1-44EC-B4EA-8560E3C77391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24505B2B-0447-431D-A788-2CD8927037C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24505B2B-0447-431D-A788-2CD8927037C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24505B2B-0447-431D-A788-2CD8927037C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24505B2B-0447-431D-A788-2CD8927037C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D634A1FD-C6D8-49AA-8F73-52D23CB0C41F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D634A1FD-C6D8-49AA-8F73-52D23CB0C41F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D634A1FD-C6D8-49AA-8F73-52D23CB0C41F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D634A1FD-C6D8-49AA-8F73-52D23CB0C41F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

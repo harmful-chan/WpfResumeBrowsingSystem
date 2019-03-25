@@ -1,0 +1,76 @@
+﻿<Window x:Class="WpfResumeBrowsingSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfResumeBrowsingSystem"
+        xmlns:control="clr-namespace:WpfResumeBrowsingSystem.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        DataContext="{DynamicResource MainWindowModel}"
+        Height="800" MinHeight="800" 
+        Width="1600" MinWidth="1600"
+        WindowStartupLocation="CenterScreen"
+        >
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0 0 " EndPoint="0 1">
+                    <GradientStop Color="#4B8EFF" Offset="0"></GradientStop>
+                    <GradientStop Color="#4481E8" Offset="0.1"></GradientStop>
+                    <GradientStop Color="#407ADB" Offset="0.3"></GradientStop>
+                    <GradientStop Color="#407ADB" Offset="0.7"></GradientStop>
+                    <GradientStop Color="#4481E8" Offset="0.9"></GradientStop>
+                    <GradientStop Color="#4B8EFF" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel Margin="20 10 0 0" Orientation="Horizontal">
+                <Image VerticalAlignment="Center" Source="{DynamicResource 启蒙}"></Image>
+                <TextBlock Foreground="White" Text="简历浏览系统"
+                           FontFamily="微软雅黑" FontSize="50"
+                           VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="1" Margin="10 10 10 0">
+            <Grid>
+                <ListBox  ItemsSource="{Binding DataList}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" >
+                    <ListBox.Template>
+                        <ControlTemplate TargetType="{x:Type ListBox}">
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <WrapPanel Orientation="Horizontal" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                </ListBox>
+            </Grid>
+        </Border>
+        <Border Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <control:TitleBaceContentControl Grid.Column="0" Margin="10 10 0 10" Content="{Binding CurrentStaff}"
+                                                 Tag="个人信息"></control:TitleBaceContentControl>
+                <control:TitleBaceContentControl Grid.Column="1" Margin="10 10 10 10"
+                                                 Tag="个人经历"></control:TitleBaceContentControl>
+            </Grid>
+
+        </Border>
+        <Border Grid.Row="3" Background="#C3C4BB">
+            <TextBlock FontFamily="微软雅黑" FontSize="16"
+                       VerticalAlignment="Top" HorizontalAlignment="Center"
+                       Foreground="White"
+                       Text="xxxxxxxx所有" >
+            </TextBlock>
+        </Border>
+    </Grid>
+
+</Window>
