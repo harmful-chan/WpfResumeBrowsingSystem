@@ -1,15 +1,17 @@
+using System;
+
 namespace WpfResumeBrowsingSystem.DBL
 {
     public class Staffs
     {
 
-        public string Sid { get; set; }
+        public int Sid { get; set; }
 
         public string Name { get; set; }
 
         public string Sex { get; set; }
 
-        public string Age { get; set; }
+        public int Age { get; set; }
 
         public string Post { get; set; }
 
@@ -17,7 +19,7 @@ namespace WpfResumeBrowsingSystem.DBL
 
         public string Tel { get; set; }
 
-        public string Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
         public string Education { get; set; }
 
@@ -25,7 +27,7 @@ namespace WpfResumeBrowsingSystem.DBL
 
         public string Address { get; set; }
 
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
 
     }
 }

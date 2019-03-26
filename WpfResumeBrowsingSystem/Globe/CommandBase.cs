@@ -13,24 +13,24 @@ namespace WpfResumeBrowsingSystem.Globe
 
         public bool CanExecute(object parameter)
         {
-            if (null == CanExecutFunc)
+            if (null == this.CanExecutProperty)
             {
                 return true;
             }
-            this.CanExecutFunc(parameter);
+            this.CanExecutProperty(parameter);
             return true;
         }
 
         public void Execute(object parameter)
         {
-            if (null == ExecuteAction)
+            if (null == this.ExecuteProperty)
             {
                 return;
             }
-            this.ExecuteAction(parameter);
+            this.ExecuteProperty(parameter);
         }
 
-        public Action<object> ExecuteAction;
-        public Func<object, bool> CanExecutFunc;
+        public Action<object> ExecuteProperty;
+        public Func<object, bool> CanExecutProperty;
     }
 }

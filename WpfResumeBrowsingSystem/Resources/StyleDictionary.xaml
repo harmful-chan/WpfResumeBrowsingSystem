@@ -3,5 +3,6 @@
         <ResourceDictionary Source="Styles/ListBoxItemStyle.xaml"/>
         <ResourceDictionary Source="Styles/ListBoxStyle.xaml"/>
         <ResourceDictionary Source="Styles/HeaderedContentControlStyle.xaml"/>
+        <ResourceDictionary Source="Styles/DataGridStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

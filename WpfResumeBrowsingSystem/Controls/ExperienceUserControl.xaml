@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="WpfResumeBrowsingSystem.Controls.ExperienceUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfResumeBrowsingSystem.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="uc">
+    <UserControl.Resources>
+        <local:ObjectToString x:Key="o2s"/>
+    </UserControl.Resources>
+    <Grid>
+        <Border>
+            <DataGrid ItemsSource="{Binding DataContext, ElementName=uc}"
+                      AutoGenerateColumns="False" IsReadOnly="True" 
+                      Style="{DynamicResource DataGridStyle}"
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
+                      RowStyle="{DynamicResource DataGridRowStyle}"
+                      CellStyle="{DynamicResource DataGridCellStyle}"
+                      >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="Auto" Header="任职单位名称" Binding="{Binding CompanyName}"/>
+                    <DataGridTextColumn Width="Auto" Header="任职时间" Binding="{Binding Start}"/>
+                    <DataGridTextColumn Width="Auto" Header="离职时间" Binding="{Binding End}"/>
+                    <DataGridTextColumn Width="Auto" Header="职位描述" Binding="{Binding Location}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+    </Grid>
+</UserControl>
