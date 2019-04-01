@@ -20,7 +20,7 @@
   + 例：http://localhost:56706/api/data?tbname=Staffs
 
 	|请求|Url|功能|
-	|-|-|
+	|-|-|-|
 	|GET|http://localhost:56706/api/data|获取数据库数据|
 
 	|可带参数|值|说明|
@@ -31,7 +31,7 @@
   + 例
   
 	|请求|Url|功能|
-	|-|-|
+	|-|-|-|
 	|POST|http://localhost:56706/api/file|下载服务器文件数据|
 	|PUT|http://localhost:56706/api/file|更新文件|
 
