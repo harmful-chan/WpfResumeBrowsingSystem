@@ -4,8 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using WpfResumeBrowsingSystem.DBL.Models;
 
-using WpfResumeBrowsingSystem.DBL;
 namespace WpfResumeBrowsingSystem.Test
 {
     class Program
@@ -15,7 +16,10 @@ namespace WpfResumeBrowsingSystem.Test
 
         static void Main(string[] args)
         {
-            Console.Write(SqlHelper.ShowTable<Staffs>(SqlHelper.GetTable<Staffs>()));
+            List<Staffs> s;
+            s = SqlHelper.GetTable<Staffs>();
+
+            Console.WriteLine(SqlHelper.ShowTable<Staffs>(s));
             Console.ReadLine();
         }
 

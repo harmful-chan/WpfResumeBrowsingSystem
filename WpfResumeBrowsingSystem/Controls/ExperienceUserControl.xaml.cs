@@ -19,7 +19,7 @@ namespace WpfResumeBrowsingSystem.Controls
 
     }
 
-    public class ObjectToString : IValueConverter
+    public class ObjectToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -27,6 +27,26 @@ namespace WpfResumeBrowsingSystem.Controls
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class DateConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] is DateTime && values[1] is DateTime)
+            {
+                return ((DateTime)values[0]).ToString("yyyy/MM/dd") + " ~ " + ((DateTime)values[1]).ToString("yyyy/MM/dd");
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

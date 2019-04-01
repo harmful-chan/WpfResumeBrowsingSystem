@@ -6,7 +6,7 @@ using MySql.Data.MySqlClient;
 using System.Windows;
 using System.Text;
 
-namespace WpfResumeBrowsingSystem.DBL
+namespace WpfResumeBrowsingSystem.DBL.Models
 {
     public class SqlHelper
     {

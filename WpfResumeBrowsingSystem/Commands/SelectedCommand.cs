@@ -26,8 +26,14 @@ namespace WpfResumeBrowsingSystem.Commands
         {
             MessageBox.Show("Command execute!!!");
         }
+    }
 
-
-        
+    class ComCommand : CommandBase
+    {
+        public ComCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        {
+            base.ExecuteProperty = execute;
+            base.CanExecutProperty = canExecute;
+        }
     }
 }

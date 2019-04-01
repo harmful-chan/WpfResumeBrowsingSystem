@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WpfResumeBrowsingSystem.Globe;
-using WpfResumeBrowsingSystem.DBL;
+using WpfResumeBrowsingSystem.DBL.Models;
 using System.Windows.Input;
 using WpfResumeBrowsingSystem.Commands;
 using System.Windows;
@@ -20,7 +20,7 @@ namespace WpfResumeBrowsingSystem.ViewModels
             //获取Experience总表
             this.ExperienceTable = SqlHelper.GetTable<Experiences>();
 
-            this.Selected = new SelectedCommand(p =>
+            this.Selected = new ComCommand(p =>
             {
                 this.CurrentStaff = p as Staffs;
                 this.CurrentExperience = new List<Experiences>(
@@ -28,10 +28,16 @@ namespace WpfResumeBrowsingSystem.ViewModels
                         x => x.Staff_Sid == this.CurrentStaff.Sid
                         ));
             });
+
+            this.Open = new ComCommand(p=> 
+            {
+                //打开操作
+            });
         }
         
-        //选择改变命令
+        //命令
         public ICommand Selected { get; set; }
+        public ICommand Open { get; set; }
 
         //Staff总表
         private List<Staffs> _staffTable;

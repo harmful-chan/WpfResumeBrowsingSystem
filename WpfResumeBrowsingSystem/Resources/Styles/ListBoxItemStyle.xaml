@@ -22,8 +22,20 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true" CornerRadius="5 5 5 5">
-                        <!--<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>-->
-                        <TextBlock Text="{Binding Name}"/>
+                        
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black"/>
+                            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="5 0 0 0">
+                                <TextBlock Text="{Binding Name}" FontSize="15"/>
+                                <TextBlock Text="{Binding Age}" FontSize="15"/>
+                                <TextBlock Text="{Binding Tel}" FontSize="15"/>
+                            </StackPanel>
+                        </Grid>
+                        
                         <Border.Effect>
                             <DropShadowEffect Color="Black" Direction="315" Opacity="0.8" BlurRadius="2" ShadowDepth="2"></DropShadowEffect>
                         </Border.Effect>

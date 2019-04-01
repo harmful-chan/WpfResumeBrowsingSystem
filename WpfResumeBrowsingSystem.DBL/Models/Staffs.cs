@@ -1,6 +1,6 @@
 using System;
 
-namespace WpfResumeBrowsingSystem.DBL
+namespace WpfResumeBrowsingSystem.DBL.Models
 {
     public class Staffs
     {
