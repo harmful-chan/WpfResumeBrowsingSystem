@@ -1,42 +1,42 @@
 ## <center>WpfResumeBrowsingSystem</center>
 ---
-+ ¿ª·¢Æ½Ì¨£ºWIN10 64
-+ Êı¾İ¿â£ºMysql
-+ ·şÎñÆ÷£ºUbunttu16.04 64
++ å¼€å‘å¹³å°ï¼šWIN10 64
++ æ•°æ®åº“ï¼šMysql
++ æœåŠ¡å™¨ï¼šUbunttu16.04 64
 
-|³ÌĞò¼¯|Æ½Ì¨|ÌØĞÔ|ÏêÏ¸ËµÃ÷|Nuget°ü|
+|ç¨‹åºé›†|å¹³å°|ç‰¹æ€§|è¯¦ç»†è¯´æ˜|NugetåŒ…|
 |:-:|:-:|:-:|:-:|:-:|
-|.|.net 4.5.2|Wpf|Ö÷Æô¶¯ÏîÄ¿||
-|.DBL|.net 4.5.2|ADO .Net|µ×²ãÊı¾İ¿âÁ¬½Ó|MySql.Data|
-|.Test|.net 4.5.2||¿ØÖÆÌ¨³ÌĞò£¬µ÷ÊÔ|Newtonsoft.Json|
-|.Domain|.net core 2.1|EF Core DBfirst|webÓ¦ÓÃÊı¾İ¿âÁ¬½Ó|MySql.Data.EntityFrameworkCore|
-|.WebApi|.net core 2.1|Web Api|·şÎñÆ÷Êı¾İÌáÈ¡£¬ÇëÇó´¦Àí|
+|.|.net 4.5.2|Wpf|ä¸»å¯åŠ¨é¡¹ç›®||
+|.DBL|.net 4.5.2|ADO .Net|åº•å±‚æ•°æ®åº“è¿æ¥|MySql.Data|
+|.Test|.net 4.5.2||æ§åˆ¶å°ç¨‹åºï¼Œè°ƒè¯•|Newtonsoft.Json|
+|.Domain|.net core 2.1|EF Core DBfirst|webåº”ç”¨æ•°æ®åº“è¿æ¥|MySql.Data.EntityFrameworkCore|
+|.WebApi|.net core 2.1|Web Api|æœåŠ¡å™¨æ•°æ®æå–ï¼Œè¯·æ±‚å¤„ç†|
 
 <br>
 
 ## <center>WebApi</center>
 ---
-#### Êı¾İ¿â
-  + Àı£ºhttp://localhost:56706/api/data?tbname=Staffs
+#### æ•°æ®åº“
+  + ä¾‹ï¼šhttp://localhost:56706/api/data?tbname=Staffs
 
-	|ÇëÇó|Url|¹¦ÄÜ
+	|è¯·æ±‚|Url|åŠŸèƒ½|
 	|-|-|
-	|GET|http://localhost:56706/api/data|»ñÈ¡Êı¾İ¿âÊı¾İ|
+	|GET|http://localhost:56706/api/data|è·å–æ•°æ®åº“æ•°æ®|
 
-	|¿É´ø²ÎÊı|Öµ|ËµÃ÷|
+	|å¯å¸¦å‚æ•°|å€¼|è¯´æ˜|
 	|-|-|-|
-	|tbname|Stadds/Experiences|±íÃû£¬´óĞ¡Ğ´Ãô¸Ğ|
+	|tbname|Stadds/Experiences|è¡¨åï¼Œå¤§å°å†™æ•æ„Ÿ|
 
-#### ·şÎñÆ÷ÎÄ¼ş
-  + Àı
+#### æœåŠ¡å™¨æ–‡ä»¶
+  + ä¾‹
   
-	|ÇëÇó|Url|¹¦ÄÜ
+	|è¯·æ±‚|Url|åŠŸèƒ½|
 	|-|-|
-	|POST|http://localhost:56706/api/file|ÏÂÔØ·şÎñÆ÷ÎÄ¼şÊı¾İ|
-	|PUT|http://localhost:56706/api/file|¸üĞÂÎÄ¼ş|
+	|POST|http://localhost:56706/api/file|ä¸‹è½½æœåŠ¡å™¨æ–‡ä»¶æ•°æ®|
+	|PUT|http://localhost:56706/api/file|æ›´æ–°æ–‡ä»¶|
 
-	|¿É´ø²ÎÊı|Öµ|ËµÃ÷|
+	|å¯å¸¦å‚æ•°|å€¼|è¯´æ˜|
 	|-|-|-|
-	|file_url|/~/pic/pic.jpg|ÎÄ¼şµØÖ·|
+	|file_url|/~/pic/pic.jpg|æ–‡ä»¶åœ°å€|
 
 
