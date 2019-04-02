@@ -16,27 +16,33 @@
 
 ## <center>WebApi</center>
 ---
+#### 服务器文件目录
+```
+wwwroot
+│   css
+│   images    
+│   js
+StaticFiles
+│   images
+...
+│└─
+```
 #### 数据库
-  + 例：http://localhost:56706/api/data?tbname=Staffs
+  + 例：http://<server_address>/api/data?tbname=Staffs
 
 	|请求|Url|功能|
 	|-|-|-|
-	|GET|http://localhost:56706/api/data|获取数据库数据|
+	|GET|http://<server_address>/api/data|获取数据库数据|
 
 	|可带参数|值|说明|
 	|-|-|-|
 	|tbname|Stadds/Experiences|表名，大小写敏感|
 
-#### 服务器文件
-  + 例
+#### 图片文件
+  + 例：http://<server_address>/StaticFiles/images/pic.jpg
   
 	|请求|Url|功能|
 	|-|-|-|
-	|POST|http://localhost:56706/api/file|下载服务器文件数据|
-	|PUT|http://localhost:56706/api/file|更新文件|
-
-	|可带参数|值|说明|
-	|-|-|-|
-	|file_url|/~/pic/pic.jpg|文件地址|
-
+	|GET|http://<server_address>/StaticFiles/images/XXX|下载图片|
+	|PUT|http://<server_address>/api/files|更新文件|
 
