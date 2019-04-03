@@ -18,31 +18,25 @@
 ---
 #### 服务器文件目录
 ```
-wwwroot
+wwwroot    目录暂时没用
 │   css
 │   images    
 │   js
-StaticFiles
-│   images
+StaticFiles     存放静态文件
+│   images    图片文件
 ...
 │└─
 ```
-#### 数据库
+
+#### 获取数据库数据
   + 例：http://<server_address>/api/data?tbname=Staffs
+  + 下载表数据
+    + GET:http://<server_address>/api/data
+      + parameter:tbname=Stadds/Experiences
 
-	|请求|Url|功能|
-	|-|-|-|
-	|GET|http://<server_address>/api/data|获取数据库数据|
-
-	|可带参数|值|说明|
-	|-|-|-|
-	|tbname|Stadds/Experiences|表名，大小写敏感|
-
-#### 图片文件
-  + 例：http://<server_address>/StaticFiles/images/pic.jpg
-  
-	|请求|Url|功能|
-	|-|-|-|
-	|GET|http://<server_address>/StaticFiles/images/XXX|下载图片|
-	|PUT|http://<server_address>/api/files|更新文件|
+#### 上传下载图片文件
+  + 下载图片
+    + GET:http://<server_address>/StaticFiles/images/XXX
+  + 上传图片
+    + POST:http://<server_address>/api/files
 
