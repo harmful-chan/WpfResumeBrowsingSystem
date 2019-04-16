@@ -12,6 +12,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using WpfResumeBrowsingSystem.Domain.Models;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace WpfResumeBrowsingSystem.WebApi
 {
@@ -43,16 +45,19 @@ namespace WpfResumeBrowsingSystem.WebApi
             app.UseMvc();
 
             app.UseStaticFiles();    //启用wwwroot目录
-            app.UseStaticFiles(new StaticFileOptions()    //与wwwroot同级添加 /StaticFiles目录
+            
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    //ServeUnknownFileTypes = true 
+            //    ContentTypeProvider = new FileExtensionContentTypeProvider(new Dictionary<string, string>
+            //    {
+            //        { ".jpg","image/jpeg"}
+            //    })
+            //});
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()    
             {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
-                RequestPath="/StaticFiles"
-            });
-            app.UseDirectoryBrowser(new DirectoryBrowserOptions()    //用/StaticFiles 浏览 /StaticFiles/images 下的文件
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles", "images")),
-                RequestPath = "/StaticFiles"
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+                RequestPath = "/images"
             });
         }
     }

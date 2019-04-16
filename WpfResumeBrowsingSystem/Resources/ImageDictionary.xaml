@@ -1,4 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ImageSource x:Key="启蒙">Images/Icons/启蒙.png</ImageSource>
+    <ImageSource x:Key="机器人">Images/机器人.png</ImageSource>
+    <ImageSource x:Key="close">Images/Icons/window_close.png</ImageSource>
+    <ImageSource x:Key="maximize">Images/Icons/window_maximize.png</ImageSource>
+    <ImageSource x:Key="minimize">Images/Icons/window_minimize.png</ImageSource>
 </ResourceDictionary>

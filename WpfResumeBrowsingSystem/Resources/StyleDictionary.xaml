@@ -1,8 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Styles/ColorStyle.xaml"/>
         <ResourceDictionary Source="Styles/ListBoxItemStyle.xaml"/>
-        <ResourceDictionary Source="Styles/ListBoxStyle.xaml"/>
+        <ResourceDictionary Source="Styles/ButtonStyle.xaml"/>
+        <ResourceDictionary Source="Styles/TextBoxStyle.xaml"/>
         <ResourceDictionary Source="Styles/HeaderedContentControlStyle.xaml"/>
         <ResourceDictionary Source="Styles/DataGridStyle.xaml"/>
+        <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
+        
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

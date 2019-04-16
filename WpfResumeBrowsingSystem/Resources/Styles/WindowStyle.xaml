@@ -1,0 +1,83 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfResumeBrowsingSystem.Resources.Styles"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ColorStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <SolidColorBrush x:Key="Title.Text.Color" Color="{StaticResource Default.Color.LV0}"/>
+    <SolidColorBrush x:Key="Title.Color" Color="{StaticResource Default.Color.LV3}"/>
+    <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" x:Name="border" Background="{StaticResource Title.Color}"
+                                BorderBrush="Transparent" BorderThickness="0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding Move}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="5"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="7"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="3"/>
+                                    </Grid.RowDefinitions>
+                                    <Image  Grid.Column="1" Grid.Row="1" Source="{TemplateBinding Icon}"/>
+                                    <TextBlock Grid.Column="3" Grid.Row="1"
+                                           Foreground="{StaticResource Title.Text.Color}" 
+                                           FontFamily="Consolas"
+                                           FontSize="16" FontWeight="Bold"
+                                           Text="{TemplateBinding Title}"
+                                               VerticalAlignment="Center">
+                                    </TextBlock>
+                                    <Button Grid.Column="5" Grid.Row="1" 
+                                        Background="Transparent" BorderThickness="0"
+                                        Command="{Binding Minimize}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                        <Image Source="{StaticResource minimize}"/>
+                                    </Button>
+                                    <Button Grid.Column="7" Grid.Row="1" 
+                                        Background="Transparent" BorderThickness="0"
+                                        Command="{Binding Change}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                        <Image Source="{StaticResource maximize}"/>
+                                    </Button>
+                                    <Button Grid.Column="9" Grid.Row="1" 
+                                        Background="Transparent" BorderThickness="0"
+                                        Command="{Binding Closed}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                        <Image Source="{StaticResource close}"/>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                            <AdornerDecorator Grid.Row="1">
+                                <ContentPresenter/>
+                            </AdornerDecorator>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

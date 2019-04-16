@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 using Newtonsoft.Json;
 using WpfResumeBrowsingSystem.Domain.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace WpfResumeBrowsingSystem.WebApi.Controllers
 {
     [Route("api/[controller]")]

@@ -8,17 +8,17 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="MainWindow" 
-        DataContext="{DynamicResource MainWindowModel}"
-        Height="800" MinHeight="800" 
-        Width="1600" MinWidth="1600"
+        DataContext="{DynamicResource MainViewModel}"
+        Height="1080"
+        Width="1720"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <DockPanel>
-            <Menu DockPanel.Dock="Top" Height="27" x:Name="dock">
-                <MenuItem Header="文件(F)" FontSize="20">
-                    <MenuItem Header="导入"/>
+            <Menu DockPanel.Dock="Top" Height="28" x:Name="dock" >
+                <MenuItem Header="文件(F)" FontSize="18">
+                    <MenuItem Header="登录"/>
                     <Separator/>
-                    <MenuItem Header="退出"/>
+                    <MenuItem Header="注销"/>
                 </MenuItem>
             </Menu>
             <Grid DockPanel.Dock="Top">

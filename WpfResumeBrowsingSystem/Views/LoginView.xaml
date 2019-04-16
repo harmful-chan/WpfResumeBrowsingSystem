@@ -1,0 +1,70 @@
+﻿<Window x:Class="WpfResumeBrowsingSystem.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfResumeBrowsingSystem.Views"
+        xmlns:vm="clr-namespace:WpfResumeBrowsingSystem.ViewModels"
+        xmlns:cvt="clr-namespace:WpfResumeBrowsingSystem.Converter"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Style="{StaticResource WindowStyle}"
+        DataContext="{StaticResource LoginViewModel}"
+        WindowStartupLocation="CenterScreen"
+        Title="Sign In" Height="600" Width="400"
+        MaxHeight="600" MaxWidth="400"
+        MinHeight="600" MinWidth="400"
+        Icon="{StaticResource  启蒙}">
+    <Window.Resources>
+        
+        <SolidColorBrush x:Key="Background.Color" Color="{StaticResource Default.Color.LV0}"/>
+        <SolidColorBrush x:Key="Text.Color" Color="{StaticResource Default.Color.LV1}"/>
+        <SolidColorBrush x:Key="Button.Color" Color="{StaticResource Default.Color.LV3}"/>
+        <cvt:HalfConverter x:Key="HalfCon"/>
+
+    </Window.Resources>
+    <Grid Background="{StaticResource Background.Color}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="1" Grid.Column="1" Source="{StaticResource 机器人}"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" 
+                   Foreground="{StaticResource Text.Color}"
+                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                   Margin="10 0 0 0"
+                   Text="User Id:" FontWeight="Black"  FontFamily="Consolas" FontSize="15"/>
+        <TextBox Grid.Row="3" Grid.Column="1" 
+                 x:Name="t1"
+                 Text="{Binding UserId}"
+                 Style="{StaticResource TextBoxStyle}"
+                 Tag="User Id"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" 
+                   Foreground="{StaticResource Text.Color}"
+                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                   Margin="10 0 0 0"
+                   Text="Password:" FontWeight="Black"  FontFamily="Consolas" FontSize="15"/>
+        <TextBox Grid.Row="5" Grid.Column="1" 
+                 Text="{Binding Password}"
+                 Style="{StaticResource TextBoxStyle}"
+                 Tag="Password"/>
+        <Grid Grid.Row="7" Grid.Column="1">
+            <Button Style="{StaticResource ButtonStyle}" Content="Sign In" Background="{StaticResource Button.Color}"/>
+        </Grid>
+
+    </Grid>
+
+</Window>

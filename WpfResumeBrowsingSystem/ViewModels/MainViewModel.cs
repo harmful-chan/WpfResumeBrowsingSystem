@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using WpfResumeBrowsingSystem.Globe;
 using WpfResumeBrowsingSystem.DBL.Models;
 using System.Windows.Input;
 using WpfResumeBrowsingSystem.Commands;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace WpfResumeBrowsingSystem.ViewModels
 {
@@ -26,7 +23,7 @@ namespace WpfResumeBrowsingSystem.ViewModels
                 this.CurrentExperience = new List<Experiences>(
                     this.ExperienceTable.Where(
                         x => x.Staff_Sid == this.CurrentStaff.Sid
-                        ));
+                ));
             });
 
             this.Open = new ComCommand(p=> 

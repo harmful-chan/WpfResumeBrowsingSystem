@@ -26,8 +26,9 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] string value)
         {
+            return Ok("POST OK");
         }
 
         // PUT api/values/5
