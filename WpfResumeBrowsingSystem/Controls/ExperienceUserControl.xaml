@@ -11,10 +11,12 @@
         <local:DateConverter x:Key="d2s"/>
     </UserControl.Resources>
     <Grid>
-        <Border>
-            <DataGrid ItemsSource="{Binding DataContext, ElementName=uc}"
-                      AutoGenerateColumns="False" IsReadOnly="True" 
+        <ContentControl Style="{StaticResource TitleBaseStyle}" Tag="个人经历">
+            <DataGrid ItemsSource="{Binding DataContext, ElementName=uc}" 
+                      IsReadOnly="True" 
                       HeadersVisibility="Column"
+                      BorderBrush="Transparent"
+                      BorderThickness="0"
                       Style="{DynamicResource DataGridStyle}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="1*" FontSize="15" Header="任职单位名称" Binding="{Binding CompanyName}" />
@@ -29,7 +31,7 @@
                     <DataGridTextColumn Width="1*" FontSize="15" Header="职位描述" Binding="{Binding Location}"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </Border>
+        </ContentControl>
 
     </Grid>
 </UserControl>

@@ -4,14 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfResumeBrowsingSystem"
+        xmlns:cvt="clr-namespace:WpfResumeBrowsingSystem.Converter"
         xmlns:ctl="clr-namespace:WpfResumeBrowsingSystem.Controls"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" 
+
+        Title="简历管理系统"
+        Icon="{StaticResource 启蒙}"
         DataContext="{DynamicResource MainViewModel}"
-        Height="1080"
-        Width="1720"
-        WindowStartupLocation="CenterScreen">
+        Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={StaticResource Reduce200}}" 
+        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource Reduce200}}" 
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+         Style="{StaticResource WindowStyle}">
+    <Window.Resources>
+        
+        <SolidColorBrush x:Key="Background.Color" Color="{StaticResource Default.Color.LV0}"/>
+        <SolidColorBrush x:Key="Panel.Color" Color="{StaticResource Default.Color.LV1}"/>
+        <LinearGradientBrush x:Key="Title.Color" StartPoint="0 0" EndPoint="0 1">
+            <GradientStop Color="{StaticResource Default.Color.LV0}" Offset="0"/>
+            <GradientStop Color="{StaticResource Default.Color.LV2}" Offset="0"/>
+            <GradientStop Color="{StaticResource Default.Color.LV2}" Offset="1"/>
+            <GradientStop Color="{StaticResource Default.Color.LV0}" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Resources>
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="28" x:Name="dock" >
@@ -21,35 +37,27 @@
                     <MenuItem Header="注销"/>
                 </MenuItem>
             </Menu>
-            <Grid DockPanel.Dock="Top">
+            <Grid DockPanel.Dock="Top" Background="{StaticResource Background.Color}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0 0 " EndPoint="0 1">
-                            <GradientStop Color="#4B8EFF" Offset="0"></GradientStop>
-                            <GradientStop Color="#4481E8" Offset="0.1"></GradientStop>
-                            <GradientStop Color="#407ADB" Offset="0.3"></GradientStop>
-                            <GradientStop Color="#407ADB" Offset="0.7"></GradientStop>
-                            <GradientStop Color="#4481E8" Offset="0.9"></GradientStop>
-                            <GradientStop Color="#4B8EFF" Offset="1"></GradientStop>
-                        </LinearGradientBrush>
-                    </Border.Background>
+                <Border Grid.Row="0" Background="{StaticResource Title.Color}">
                     <StackPanel Margin="20 10 0 0" Orientation="Horizontal">
                         <Image VerticalAlignment="Center" Source="{DynamicResource 启蒙}"></Image>
-                        <TextBlock Foreground="White" Text="简历浏览系统"
+                        <TextBlock Text="简历浏览系统"
                            FontFamily="微软雅黑" FontSize="50"
+                            Foreground="{StaticResource Background.Color}"
                            VerticalAlignment="Center"></TextBlock>
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="1" Margin="10 10 10 0">
                     <Grid>
                         <ListBox x:Name="lb" ItemsSource="{Binding StaffTable}" 
-                          ItemContainerStyle="{DynamicResource ListBoxItemStyle}" >
+                                 ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
+                                 Tag="{StaticResource Panel.Color}">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel/>
@@ -69,12 +77,8 @@
                             <ColumnDefinition Width="500"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <ctl:TitleBaceContentControl Grid.Column="0" Margin="10 10 0 10" Tag="个人信息">
-                            <ctl:StaffUserControl DataContext="{Binding CurrentStaff}"/>
-                        </ctl:TitleBaceContentControl>
-                        <ctl:TitleBaceContentControl Grid.Column="1" Margin="10 10 10 10" Tag="个人经历">
-                            <ctl:ExperienceUserControl DataContext="{Binding CurrentExperience}"/>
-                        </ctl:TitleBaceContentControl>
+                        <ctl:StaffUserControl Grid.Column="0" Margin="10 10 0 10" DataContext="{Binding CurrentStaff}"/>
+                        <ctl:ExperienceUserControl Grid.Column="1" Margin="10 10 10 10" Tag="个人经历" DataContext="{Binding CurrentExperience}"/>
                     </Grid>
 
                 </Border>
@@ -87,7 +91,7 @@
                 </Border>
             </Grid>
         </DockPanel>
-        
+
     </Grid>
 
 </Window>

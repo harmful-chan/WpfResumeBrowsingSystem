@@ -7,6 +7,8 @@
         <ResourceDictionary Source="Styles/HeaderedContentControlStyle.xaml"/>
         <ResourceDictionary Source="Styles/DataGridStyle.xaml"/>
         <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
+        <ResourceDictionary Source="Styles/ToolWindowStyle.xaml"/>
+        <ResourceDictionary Source="Styles/TitleBaseStyle.xaml"/>
         
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

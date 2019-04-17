@@ -14,6 +14,7 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using WpfResumeBrowsingSystem.Domain.Models;
 using Microsoft.AspNetCore.StaticFiles;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace WpfResumeBrowsingSystem.WebApi
 {
@@ -32,6 +33,14 @@ namespace WpfResumeBrowsingSystem.WebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDirectoryBrowser();    //添加文件浏览功能
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                // 为 Swagger JSON and UI设置xml文档注释路径
+                var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
+                var xmlPath = Path.Combine(basePath, "Swagger.xml");
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,23 +51,26 @@ namespace WpfResumeBrowsingSystem.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+           
 
             app.UseStaticFiles();    //启用wwwroot目录
             
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    //ServeUnknownFileTypes = true 
-            //    ContentTypeProvider = new FileExtensionContentTypeProvider(new Dictionary<string, string>
-            //    {
-            //        { ".jpg","image/jpeg"}
-            //    })
-            //});
             app.UseDirectoryBrowser(new DirectoryBrowserOptions()    
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
                 RequestPath = "/images"
             });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            app.UseMvc();
         }
     }
 }

@@ -4,28 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfResumeBrowsingSystem.Controls"
+             xmlns:ctl="clr-namespace:WpfResumeBrowsingSystem.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="uc">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <HeaderedContentControl Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="姓名" Content="{Binding Name}"/>
-        <HeaderedContentControl Grid.Row="0" Grid.Column="1" Style="{DynamicResource HeaderedContentControlStyle}" Header="性别" Content="{Binding Sex}"/>
-        <HeaderedContentControl Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="年龄" Content="{Binding Age}"/>
-        <HeaderedContentControl Grid.Row="1" Grid.Column="1" Style="{DynamicResource HeaderedContentControlStyle}" Header="岗位" Content="{Binding Post}"/>
-        <HeaderedContentControl Grid.Row="2" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="毕业学校" Content="{Binding School}"/>
-        <HeaderedContentControl Grid.Row="2" Grid.Column="1" Style="{DynamicResource HeaderedContentControlStyle}" Header="电话" Content="{Binding Tel}"/>
-        <HeaderedContentControl Grid.Row="3" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="出生日期" Content="{Binding Birthday}"/>
-        <HeaderedContentControl Grid.Row="3" Grid.Column="1" Style="{DynamicResource HeaderedContentControlStyle}" Header="地址" Content="{Binding Address}"/>
-        <HeaderedContentControl Grid.Row="4" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="特长" Content="{Binding Specialty}"/>
+        <ContentControl Style="{StaticResource TitleBaseStyle}" Tag="个人信息">
+            
+            <Grid Background="{Binding Background, ElementName=uc}">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <HeaderedContentControl Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="姓名" Content="{Binding Name}"/>
+                <HeaderedContentControl Grid.Row="0" Grid.Column="1" Style="{DynamicResource HeaderedContentControlStyle}" Header="性别" Content="{Binding Sex}"/>
+                <HeaderedContentControl Grid.Row="1" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="年龄" Content="{Binding Age}"/>
+                <HeaderedContentControl Grid.Row="1" Grid.Column="1" Style="{DynamicResource HeaderedContentControlStyle}" Header="岗位" Content="{Binding Post}"/>
+                <HeaderedContentControl Grid.Row="2" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="毕业学校" Content="{Binding School}"/>
+                <HeaderedContentControl Grid.Row="2" Grid.Column="1" Style="{DynamicResource HeaderedContentControlStyle}" Header="电话" Content="{Binding Tel}"/>
+                <HeaderedContentControl Grid.Row="3" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="出生日期" Content="{Binding Birthday}"/>
+                <HeaderedContentControl Grid.Row="3" Grid.Column="1" Style="{DynamicResource HeaderedContentControlStyle}" Header="地址" Content="{Binding Address}"/>
+                <HeaderedContentControl Grid.Row="4" Grid.Column="0" Style="{DynamicResource HeaderedContentControlStyle}" Header="特长" Content="{Binding Specialty}"/>
+            </Grid>
+        </ContentControl>
+        
     </Grid>
 </UserControl>

@@ -1,34 +1,36 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <LinearGradientBrush x:Key="Item.DefaultColor" StartPoint="0.5, 0" EndPoint="0.5, 1">
-        <GradientStop Color="#E6E6E6" Offset="0"></GradientStop>
-        <GradientStop Color="#D6D6D6" Offset="0.5"></GradientStop>
-        <GradientStop Color="#DBDBDB" Offset="1"></GradientStop>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ColorStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <LinearGradientBrush x:Key="Item.Color.Deafult" StartPoint="0.5, 0" EndPoint="0.5, 1">
+        <GradientStop Color="{StaticResource Default.Color.LV0}" Offset="0"/>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="Item.SelectedColor" StartPoint="0.5, 0" EndPoint="0.5, 1">
-        <GradientStop Color="#F5CA6E" Offset="0"></GradientStop>
-        <GradientStop Color="#DEB764" Offset="0.5"></GradientStop>
-        <GradientStop Color="#EBC16A" Offset="1"></GradientStop>
+    <LinearGradientBrush x:Key="Item.Color.Selected" StartPoint="0.5, 0" EndPoint="0.5, 1">
+        <GradientStop Color="{StaticResource Default.Color.LV2}" Offset="0"></GradientStop>
+        
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="Item.OverColor" StartPoint="0.5, 0" EndPoint="0.5, 1">
-        <GradientStop Color="#E3DF10" Offset="0"></GradientStop>
-        <GradientStop Color="#D1CE0F" Offset="0.5"></GradientStop>
-        <GradientStop Color="#E3DF10" Offset="1"></GradientStop>
+    <LinearGradientBrush x:Key="Item.Color.Over" StartPoint="0.5, 0" EndPoint="0.5, 1">
+        <GradientStop Color="{StaticResource Default.Color.LV1}" Offset="0"></GradientStop>
     </LinearGradientBrush>
     <Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="4,1"/>
         <Setter Property="Margin" Value="10 10 10 10"/>
-        <Setter Property="Background" Value="{StaticResource Item.DefaultColor}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource Item.Color.Deafult}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Height" Value="100"/>
         <Setter Property="Width" Value="200"/> 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true" CornerRadius="5 5 5 5">
+                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            Padding="{TemplateBinding Padding}" 
+                            SnapsToDevicePixels="true" CornerRadius="5 5 5 5">
                         
                         <Grid Margin="10">
                             <Grid.ColumnDefinitions>
@@ -44,15 +46,15 @@
                         </Grid>
                         
                         <Border.Effect>
-                            <DropShadowEffect Color="Black" Direction="315" Opacity="0.8" BlurRadius="2" ShadowDepth="2"></DropShadowEffect>
+                            <DropShadowEffect Color="Black" Direction="315" Opacity="0.3" BlurRadius="2" ShadowDepth="2"></DropShadowEffect>
                         </Border.Effect>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.SelectedColor}"/>
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.Color.Selected}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.OverColor}"/>
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource Item.Color.Over}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>

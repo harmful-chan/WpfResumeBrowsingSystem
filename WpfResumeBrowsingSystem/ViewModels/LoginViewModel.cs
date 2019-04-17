@@ -33,7 +33,6 @@ namespace WpfResumeBrowsingSystem.ViewModels
             set
             {
                 _userId = value;
-                GetUserMessage(this.UserId);
                 this.RaisePropertyChanged("UserId");
             }
         }
@@ -62,32 +61,6 @@ namespace WpfResumeBrowsingSystem.ViewModels
         #region //命令
         public ICommand LoginIn { get; }
 
-        public ICommand Closed { get; } = 
-            new ComCommand(p =>
-            {
-                ((Window)p).Close();
-            });
-
-        public ICommand Minimize { get; } = 
-            new ComCommand(p =>
-            {
-                ((Window)p).WindowState = WindowState.Minimized;
-            });
-
-        public ICommand Change { get; } = 
-            new ComCommand(p =>
-            {
-                Window tmp = p as Window;
-                if (tmp.WindowState == WindowState.Maximized)
-                    tmp.WindowState = WindowState.Normal;
-                else tmp.WindowState = WindowState.Maximized;
-            });
-
-        public ICommand Move { get; } = 
-            new ComCommand(p =>
-            {
-                ((Window)p).DragMove();
-            });
         #endregion
 
 

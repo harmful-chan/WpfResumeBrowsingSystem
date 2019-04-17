@@ -73,10 +73,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TitleBaceContentControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\ImageDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +105,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\TitleBaseStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\ToolWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\WindowStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,11 +136,9 @@
     <Compile Include="Controls\StaffUserControl.xaml.cs">
       <DependentUpon>StaffUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TitleBaceContentControl.xaml.cs">
-      <DependentUpon>TitleBaceContentControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converter\ComConverter.cs" />
     <Compile Include="Converter\HalfConverter.cs" />
+    <Compile Include="Converter\ReduceConverter.cs" />
     <Compile Include="Globe\CommandBase.cs" />
     <Compile Include="Globe\ViewModelBase.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

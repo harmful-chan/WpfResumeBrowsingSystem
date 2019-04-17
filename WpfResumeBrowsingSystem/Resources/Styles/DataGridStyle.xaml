@@ -1,13 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WpfResumeBrowsingSystem.Resources.Styles">
-
-    <SolidColorBrush Color="#D6D6D6" x:Key="ColumnHeaderColor"/>
-    <SolidColorBrush Color="#C4A138" x:Key="LineColor"/>
-    <SolidColorBrush Color="AntiqueWhite" x:Key="RowBackgroundColor"/>
-    <SolidColorBrush Color="AliceBlue" x:Key="AltRowBackgroundColor"/>
-    <SolidColorBrush Color="#81BEC2" x:Key="SelectedColor"/>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ColorStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
     
+    <SolidColorBrush x:Key="ColumnHeader.Background" Color="{StaticResource Default.Color.LV0}"/>
+    <SolidColorBrush x:Key="Line.Color" Color="Transparent"/>
+    <SolidColorBrush x:Key="Row.Background" Color="{StaticResource Default.Color.LV1}"/>
+    <SolidColorBrush x:Key="AltRow.Background" Color="{StaticResource Default.Color.LV2}"/>
+    <SolidColorBrush x:Key="Selected.Background" Color="{StaticResource Default.Color.LV3}"/>
+
     <Style TargetType="DataGridColumnHeader" x:Key="MyColumnHeaderStyle">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Foreground" Value="#323433" />
@@ -17,8 +20,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridColumnHeader">
-                    <Border x:Name="BackgroundBorder" BorderThickness="1" BorderBrush="Black"  
-                            Width="Auto" Background="{StaticResource ColumnHeaderColor}">
+                    <Border x:Name="BackgroundBorder" BorderThickness="0" BorderBrush="Black"  
+                            Width="Auto" Background="{StaticResource ColumnHeader.Background}">
                         <ContentPresenter VerticalAlignment="Center"  HorizontalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
@@ -38,12 +41,8 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsSelected"   
-                           Value="True">
-                <!--<Setter Property="Background" Value="White"/>
-                <Setter Property="BorderThickness" Value="0"/>-->
-                <Setter Property="Foreground"                
-                 Value="Black" />
+            <Trigger Property="IsSelected"   Value="True">
+                <Setter Property="Foreground" Value="Black" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -54,12 +53,12 @@
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="CanUserAddRows" Value="False"/>
         <Setter Property="CanUserDeleteRows" Value="False"/>
-        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource LineColor}"/>
-        <Setter Property="VerticalGridLinesBrush" Value="{StaticResource LineColor}"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource Line.Color}"/>
+        <Setter Property="VerticalGridLinesBrush" Value="{StaticResource Line.Color}"/>
 
         <Setter Property="AlternationCount" Value="2"/>
-        <Setter Property="RowBackground" Value="{StaticResource RowBackgroundColor}"/>
-        <Setter Property="AlternatingRowBackground" Value="{StaticResource AltRowBackgroundColor}"/>
+        <Setter Property="RowBackground" Value="{StaticResource Row.Background}"/>
+        <Setter Property="AlternatingRowBackground" Value="{StaticResource AltRow.Background}"/>
 
         <Setter Property="ColumnHeaderStyle" Value="{StaticResource MyColumnHeaderStyle}"/>
         <Setter Property="CellStyle" Value="{StaticResource MyCellStyle}"/>

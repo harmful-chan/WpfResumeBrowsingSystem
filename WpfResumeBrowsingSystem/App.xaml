@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WpfResumeBrowsingSystem"
              xmlns:vm="clr-namespace:WpfResumeBrowsingSystem.ViewModels"
-             StartupUri="Views/LoginView.xaml">
+             xmlns:cvt="clr-namespace:WpfResumeBrowsingSystem.Converter"
+             StartupUri="Views/MainView.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,6 +13,7 @@
             </ResourceDictionary.MergedDictionaries>
             <vm:MainViewModel x:Key="MainViewModel"/>
             <vm:LoginViewModel x:Key="LoginViewModel"/>
+            <cvt:ReduceConverter x:Key="Reduce200" Reduce="200"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

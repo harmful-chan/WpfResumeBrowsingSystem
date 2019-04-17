@@ -28,50 +28,51 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         }
 
         //POST api/files
+        /// <summary>
+        /// 上传文件接口，获取POST请求的内容文件，filename+当前时间+.jpg保存进images文件夹中
+        /// </summary>
+        /// <param name="form">请求体</param>
+        /// <returns>最后更新文件名</returns>
         [HttpPost]
         public IActionResult Post(IFormCollection form)
         {
             //string topDirectory = this._hostingEnvironment.ContentRootPath;    //顶级目录
             string wwwDirectory = this._hostingEnvironment.WebRootPath;    //wwwroot目录
-            string fileCurrentName = null;
-            List<FileInfo> targetFiles = null;
+            List<string> updateFileName = new List<string>();
+            
             FormFileCollection formFiles = form.Files as FormFileCollection;
 
             //处理表单文件
             foreach (FormFile file in formFiles)
             {
-                //搜索相同file.name 的文件信息
-                targetFiles = new List<FileInfo>();
+                try
                 {
-                    DirectoryInfo dir = new DirectoryInfo(Path.Combine(wwwDirectory, "images"));
-                    targetFiles = FindFile(dir, "update_test");
-                }
 
-                //添加当时间进文件名,保存文件
-                fileCurrentName = Path.Combine(wwwDirectory, "images",
-                    file.Name + "_" + DateTime.Now.ToString("yyyyMMddhhmmss") + "." + file.FileName.Split('.').Last());
-                using (FileStream fs = System.IO.File.Create(fileCurrentName))
+
+                    //添加当时间进文件名,保存文件
+                    string currentFileName = Path.Combine(wwwDirectory, "images",
+                        file.Name + "_" + DateTime.Now.ToString("yyyyMMddhhmmss") + "." + file.FileName.Split('.').Last());
+                    updateFileName.Add(currentFileName);
+                    using (FileStream fs = System.IO.File.Create(currentFileName))
+                    {
+                        file.CopyTo(fs);
+                        fs.Flush();
+                    }
+                }
+                finally
                 {
-                    file.CopyTo(fs);
-                    fs.Flush();
+
                 }
             }
 
-            //结果处理
-            List<string> result = new List<string>();
+            //写入文件判断
+            List<KeyValuePair<string, bool>> fileStat = updateFileName.ConvertAll<KeyValuePair<string, bool> >(s => 
             {
-                if (formFiles.Count > 0) result.Add("post file success, current save fileInfo list:");
-                else result.Add("post file null");
+                return new KeyValuePair<string, bool>(s, System.IO.File.Exists(s));
+            });
 
-                if (null != targetFiles)
-                    foreach (FileInfo f in targetFiles)
-                        result.Add(f.Name);
-                else result.Add("current save file null");
-
-                if (null != fileCurrentName) result.Add(fileCurrentName);
-                else result.Add("current save file null");
-            }
-            return Ok(result);
+            return Ok(fileStat);
+            
         }
 
         //GET api/files?filename
