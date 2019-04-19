@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -115,40 +116,57 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         [HttpGet("download")]
         public IActionResult Download(string fileName = null)
         {
-
-            if (fileName == null) return null;
-
-            if (!System.IO.File.Exists(Path.Combine(this._hostingEnvironment.WebRootPath, "images", fileName)))   //文件不存在
+            try
             {
-                List<FileInfo> fileInfos = FindFile(
-                new DirectoryInfo(Path.Combine(this._hostingEnvironment.WebRootPath, "images")), fileName.Split('.')[0]);
-                if (fileInfos.Count <= 0) return null;
+                if (fileName == null) throw new ArgumentNullException();
 
-                //匹配扩展名相通的文件
-                List<FileInfo> fileExtenSames = fileInfos.Where(f => f.Name.Contains(Path.GetExtension(fileName))).ToList();
-
-                //获取文件更新时间
-                List<DateTime> fileUpdateDates = GetFileUpdateDateList(fileExtenSames);
-
-                //最新文件位置
-                Func<List<DateTime>, int> IndexOfNewest = x =>
+                string basePath = Path.Combine(this._hostingEnvironment.WebRootPath, "images");
+                FileInfo targetFile = null;
+                
+                if (!System.IO.File.Exists(Path.Combine(basePath, fileName)))   //不是直接下载文件，通过文件名索引下载最新文件
                 {
-                    int maxIndex = -1;
-                    for (int i = 0; i < x.Count - 1; i++)
-                        for (int j = i; j < x.Count - 1; j++)
-                            maxIndex = (DateTime.Compare(x[i], x[i + 1]) > 0) ? i : i + 1;
-                    return maxIndex;
-                };
-                int index = IndexOfNewest(fileUpdateDates);
+                    List<FileInfo> fileInfos = FindFile(new DirectoryInfo(basePath), fileName.Split('.')[0]);    
+                    if (fileInfos.Count <= 0) throw new ArgumentException();
 
+                    //匹配扩展名相通的文件
+                    List<FileInfo> fileExtenSames = fileInfos.Where(f => f.Name.Contains(Path.GetExtension(fileName))).ToList();
+
+                    //从文件名获取文件更新时间
+                    List<DateTime> fileUpdateDates = GetFileUpdateDateList(fileExtenSames);
+
+                    //索引最新文件位置
+                    Func<List<DateTime>, int> IndexOfNewest = x =>
+                    {
+                        int maxIndex = -1;
+                        for (int i = 0; i < x.Count - 1; i++)
+                            for (int j = i; j < x.Count - 1; j++)
+                                maxIndex = (DateTime.Compare(x[i], x[i + 1]) > 0) ? i : i + 1;
+                        return maxIndex;
+                    };
+                    int index = IndexOfNewest(fileUpdateDates);
+                    targetFile = fileExtenSames[index];
+                }
+                else    //直接下载文件
+                {
+                    targetFile = new FileInfo(Path.Combine(basePath, fileName));
+                }
+
+                //响应
+                if (System.IO.File.Exists(targetFile.FullName))
+                {
+                      
+                    FileStream fs = System.IO.File.OpenRead(targetFile.FullName);
+                    var fileExt = Path.GetExtension(targetFile.Name);
+                    var memi = new FileExtensionContentTypeProvider().Mappings[fileExt];
+                    return File(fs, memi, Path.GetFileName(targetFile.Name));
+                }
+                else throw new FileNotFoundException(targetFile.FullName);
+                
             }
-
-            //响应
-            FileStream fs = System.IO.File.OpenRead(
-                Path.Combine(this._hostingEnvironment.WebRootPath, "images", fileExtenSames[index].Name));
-            var fileExt = Path.GetExtension(fileExtenSames[index].Name);
-            var memi = new FileExtensionContentTypeProvider().Mappings[fileExt];
-            return File(fs, memi, Path.GetFileName(fileExtenSames[index].Name));
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         /// <summary>
