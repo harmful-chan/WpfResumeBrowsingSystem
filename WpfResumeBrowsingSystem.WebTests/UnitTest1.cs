@@ -21,7 +21,7 @@ namespace WpfResumeBrowsingSystem.WebTests
             this._client = new HttpClient();
         }
 
-        #region 本地，服务器数据库连接测试
+        #region    //测试本地，服务器 DataControl
         [TestMethod]
         public void TestLocalHostDataControl()
         {
@@ -38,6 +38,8 @@ namespace WpfResumeBrowsingSystem.WebTests
             Assert.IsTrue(tmp1.Result > 1);
             Assert.IsTrue(tmp2.Result > 1);
         }
+
+        
         private async Task<int> GetTableCount<T>(string url)
         {
             string result = await this._client.GetStringAsync(url);
@@ -49,12 +51,20 @@ namespace WpfResumeBrowsingSystem.WebTests
 
         #endregion
 
+        #region    //测试本地，服务器FilesControl
+
         [TestMethod]
         public void TestLocalHostFilesControl()
         {
             string tmp1 = UpdateFile(@"http://localhost:56706/api/files").Result;
             Assert.IsTrue(tmp1.IndexOf("post file success") >= 0);
         }
+
+        /// <summary>
+        /// 发送本地图片
+        /// </summary>
+        /// <param name="url">POST 请求URL</param>
+        /// <returns>相应体数据</returns>
         private async Task<string> UpdateFile(string url)
         {
             //测试图片是否存在
@@ -63,25 +73,26 @@ namespace WpfResumeBrowsingSystem.WebTests
                 "Resources", "update_test.jpg");
             if ( !File.Exists(filePath)) Assert.Fail("File ./Resources/update_test.jpg Not Found");
 
-            //文件操作
+            //打开本地图片，构建请求体，发送一个图片文件
             FileInfo fileInfo = new FileInfo(filePath);
             FileStream fileStream = File.OpenRead(filePath);
-
-            //建立请求内容
             MultipartFormDataContent requsetContent = new MultipartFormDataContent("----WebKitFormBoundary7MA4YWxkTrZu0gW");
             requsetContent.Add(new StreamContent(fileStream, (int)fileStream.Length), fileInfo.Name.Split('.')[0], fileInfo.Name);
 
-            //发post
-            HttpResponseMessage response = await this._client.PostAsync(url, requsetContent);
-
+            
             try
-            {
+            {   
+                //发post
+                HttpResponseMessage response = await this._client.PostAsync(url, requsetContent);
                 return await response.Content.ReadAsStringAsync();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
             finally
             {
                 fileStream.Close();
-                _client.Dispose();
             }
         }
 
@@ -93,5 +104,7 @@ namespace WpfResumeBrowsingSystem.WebTests
 
             int x = DateTime.Compare(d2, d1);
         }
+
+        #endregion
     }
 }

@@ -30,18 +30,26 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         public List<string> DbContentPropertyNames { get; }
 
         /// <summary>
+        /// 数据内容
+        /// </summary>
+        public ResumeBrowingSystemV00Context DbContent { get; }
+
+        /// <summary>
         /// 构造函数
         /// </summary>
-        public DataController()
+        public DataController(ResumeBrowingSystemV00Context dbcontent)
         {
-            DbContentPropertyInfos = new List<PropertyInfo>(
+            this.DbContent = dbcontent;
+
+            this.DbContentPropertyInfos = new List<PropertyInfo>(
                 typeof(ResumeBrowingSystemV00Context).GetProperties(
                     BindingFlags.Instance |    //包含实例成员 
                     BindingFlags.Static |    //静态成员
                     BindingFlags.Public |    //公共成员
                     BindingFlags.DeclaredOnly    //不包含继承成员
             ));
-            DbContentPropertyNames = DbContentPropertyInfos.ConvertAll<string>(t => t.Name);
+
+            this.DbContentPropertyNames = DbContentPropertyInfos.ConvertAll<string>(t => t.Name);
         }
 
         /// <summary>
@@ -49,7 +57,7 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         /// </summary>
         /// <param name="id">主键
         ///     0:数据库全部表名(tbName当前无效)
-        ///     default:其余参数有效
+        ///     other:其余参数有效
         /// </param>
         /// <param name="tbName">表名</param>
         /// <param name="sql">sql语句
@@ -59,36 +67,38 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, string tbName, string sql = null)
         {
-
-            switch (id)
+            try
             {
-                case 0:
-                    {
-                        
-                        return Ok(DbContentPropertyNames);
-                    }
-                    break;
-                default:
-                    {
-                        //检查表名是否存在
-                        if (!DbContentPropertyInfos.Exists(p => p.Name == tbName)) return NotFound("Error:Table Name Not Found");
-
-                        //返表 Json数据
-                        using (ResumeBrowingSystemV00Context db = new ResumeBrowingSystemV00Context())
+                switch (id)
+                {
+                    case 0:
                         {
-                            IList resultList;
-                                
-                            if ("Staffs" == tbName) resultList = ExecuteSql<Staffs, ResumeBrowingSystemV00Context>(db, sql);
-                            else if ("Experiences" == tbName) resultList = ExecuteSql<Experiences, ResumeBrowingSystemV00Context>(db, sql);
-                            else resultList = null;
-
-
-                            if (resultList != null) return Ok(resultList);
-                            else return NotFound("Error:Sql Fail");
+                            return Ok(DbContentPropertyNames);
                         }
-                    }
-                    break;
+                        break;
+                    default:
+                        {
+                            //检查表名是否存在
+                            if (!DbContentPropertyInfos.Exists(p => p.Name == tbName)) throw new AggregateException("Table Name Not Found");
+
+                            //返表 Json数据
+                            IList resultList = null;
+
+                            if ("Staffs" == tbName) resultList = ExecuteSql<Staffs, ResumeBrowingSystemV00Context>(this.DbContent, sql);
+                            else if ("Experiences" == tbName) resultList = ExecuteSql<Experiences, ResumeBrowingSystemV00Context>(this.DbContent, sql);
+
+
+                            if (resultList == null) throw new AggregateException("Sql Fail");
+                            return Ok(resultList);
+                        }
+                        break;
+                }
             }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+            
 
         }
 

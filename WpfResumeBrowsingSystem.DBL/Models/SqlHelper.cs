@@ -78,7 +78,7 @@ namespace WpfResumeBrowsingSystem.DBL.Models
             return srcStr.PadRight(15 - extraSpaces);
         }
 
-        static public string ShowTable<T>(List<T> table)
+        static public string GetTable<T>(List<T> table)
         {
             List<PropertyInfo> propertyInfos = new List<PropertyInfo>(typeof(T).GetProperties());    //获取T类型属性信息
             List<string> propertyNames = propertyInfos.ConvertAll<string>( p => p.Name.ToString());    //属性名称转字符串

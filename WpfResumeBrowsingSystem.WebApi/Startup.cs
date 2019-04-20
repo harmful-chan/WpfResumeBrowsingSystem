@@ -15,6 +15,7 @@ using System.IO;
 using WpfResumeBrowsingSystem.Domain.Models;
 using Microsoft.AspNetCore.StaticFiles;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Runtime.InteropServices;
 
 namespace WpfResumeBrowsingSystem.WebApi
 {
@@ -41,6 +42,13 @@ namespace WpfResumeBrowsingSystem.WebApi
                 var xmlPath = Path.Combine(basePath, "Swagger.xml");
                 c.IncludeXmlComments(xmlPath);
             });
+
+
+            services.AddDbContext<ResumeBrowingSystemV00Context>(option =>
+            {
+                option.UseMySQL(Configuration.GetConnectionString(RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "MySql:Server" : "MySql:Localhost"));
+            });
+                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

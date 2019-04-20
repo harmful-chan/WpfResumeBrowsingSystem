@@ -1,6 +1,8 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System.Configuration;
 
 namespace WpfResumeBrowsingSystem.Domain.Models
 {
@@ -22,7 +24,7 @@ namespace WpfResumeBrowsingSystem.Domain.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL(@"server=47.94.162.230;user id=root;password=123456;database=ResumeBrowingSystemV00; ");
+                //optionsBuilder.UseMySQL();
             }
         }
 
