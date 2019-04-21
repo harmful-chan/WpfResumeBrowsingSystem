@@ -12,6 +12,6 @@ namespace WpfResumeBrowsingSystem.Domain.Models
         public int? StaffSid { get; set; }
         public string CompanyName { get; set; }
 
-        public virtual Staffs StaffS { get; set; }
+        public Staffs StaffS { get; set; }
     }
 }

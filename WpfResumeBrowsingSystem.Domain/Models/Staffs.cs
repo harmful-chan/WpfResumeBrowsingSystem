@@ -23,6 +23,6 @@ namespace WpfResumeBrowsingSystem.Domain.Models
         public string Address { get; set; }
         public short? Image { get; set; }
 
-        public virtual ICollection<Experiences> Experiences { get; set; }
+        public ICollection<Experiences> Experiences { get; set; }
     }
 }

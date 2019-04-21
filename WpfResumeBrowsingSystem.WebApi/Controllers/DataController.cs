@@ -81,6 +81,7 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
 
                                 if ("Staffs" == tbName) resultList = ExecuteSql<Staffs, ResumeBrowingSystemV00Context>(db, sql);
                                 else if ("Experiences" == tbName) resultList = ExecuteSql<Experiences, ResumeBrowingSystemV00Context>(db, sql);
+                                else if ("UserInfo" == tbName) resultList = ExecuteSql<UserInfo, ResumeBrowingSystemV00Context>(db, sql);
 
                                 if (resultList == null) throw new AggregateException("Sql Fail");
                                 return Ok(resultList);

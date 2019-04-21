@@ -9,8 +9,6 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
-
-
                     <Border BorderThickness="1" BorderBrush="Gray">
                         <Grid>
                             <Grid.RowDefinitions>

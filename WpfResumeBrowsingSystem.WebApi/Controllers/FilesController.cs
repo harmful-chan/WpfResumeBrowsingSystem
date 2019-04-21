@@ -189,6 +189,37 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         }
 
         /// <summary>
+        /// Delete请求， 删除文件
+        /// </summary>
+        /// <param name="fileName">文件全名</param>
+        /// <returns>message</returns>
+        //DELETE api/files?filename
+        [HttpDelete]
+        public IActionResult Delete(string fileName = null)
+        {
+            try
+            {
+                string filePath = Path.Combine(this._hostingEnvironment.WebRootPath, "images");
+                FileInfo fileInfo = FindFile(new DirectoryInfo(filePath), fileName).First();
+                if (fileInfo.Exists)
+                {
+                    System.IO.File.Delete(fileInfo.FullName);
+                    return Ok($"Deletd Success {fileInfo.Name}");
+                }
+                else
+                {
+                    throw new FileNotFoundException(fileName);
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+            
+        }
+
+        /// <summary>
         /// 指定目录查找文件名含有字符片段的文件
         /// </summary>
         /// <param name="dirs">指定目录</param>
@@ -216,7 +247,7 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         private DateTime GetFileUpdateDate(FileInfo fileInfo)
         {
             string[] tmp = fileInfo.Name.Split('.', '_');
-            return DateTime.ParseExact(tmp[tmp.Length - 2], "yyyyMMddhhmmssfff", CultureInfo.CurrentCulture);
+            return DateTime.ParseExact(tmp[tmp.Length - 2], "yyyyMMddHHmmssfff", CultureInfo.CurrentCulture);
         }
 
         /// <summary>

@@ -1,8 +1,6 @@
 ﻿using System;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using System.Configuration;
 
 namespace WpfResumeBrowsingSystem.Domain.Models
 {
@@ -12,26 +10,26 @@ namespace WpfResumeBrowsingSystem.Domain.Models
         {
         }
 
-        public ResumeBrowingSystemV00Context(DbContextOptions<ResumeBrowingSystemV00Context> options, string v)
+        public ResumeBrowingSystemV00Context(DbContextOptions<ResumeBrowingSystemV00Context> options)
             : base(options)
         {
-
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseMySQL("server=47.94.162.230;user id=root;password=123456;database=ResumeBrowingSystemV00;");
-            }
         }
 
         public virtual DbSet<Experiences> Experiences { get; set; }
         public virtual DbSet<Staffs> Staffs { get; set; }
+        public virtual DbSet<UserInfo> UserInfo { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseMySQL("server=47.94.162.230;user id=root;password=123456;database=ResumeBrowingSystemV00;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "2.2.3-servicing-35854");
-
             modelBuilder.Entity<Experiences>(entity =>
             {
                 entity.HasKey(e => e.Eid);
@@ -106,6 +104,23 @@ namespace WpfResumeBrowsingSystem.Domain.Models
 
                 entity.Property(e => e.Tel)
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<UserInfo>(entity =>
+            {
+                entity.HasKey(e => e.Uid);
+
+                entity.ToTable("UserInfo", "ResumeBrowingSystemV00");
+
+                entity.Property(e => e.Uid).HasColumnType("int(11)");
+
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserPassword)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
             });
         }

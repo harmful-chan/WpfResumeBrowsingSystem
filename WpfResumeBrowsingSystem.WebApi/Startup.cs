@@ -12,7 +12,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
-using WpfResumeBrowsingSystem.Domain.Models;
 using Microsoft.AspNetCore.StaticFiles;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Runtime.InteropServices;

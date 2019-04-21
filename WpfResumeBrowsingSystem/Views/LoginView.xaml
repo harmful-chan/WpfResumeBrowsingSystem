@@ -58,11 +58,15 @@
                    Margin="10 0 0 0"
                    Text="Password:" FontWeight="Black"  FontFamily="Consolas" FontSize="15"/>
         <TextBox Grid.Row="5" Grid.Column="1" 
+                 x:Name="t2"
                  Text="{Binding Password}"
                  Style="{StaticResource TextBoxStyle}"
                  Tag="Password"/>
         <Grid Grid.Row="7" Grid.Column="1">
-            <Button Style="{StaticResource ButtonStyle}" Content="Sign In" Background="{StaticResource Button.Color}"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Sign In" 
+                    Background="{StaticResource Button.Color}"
+                    Command="{Binding LoginIn}">
+            </Button>
         </Grid>
 
     </Grid>

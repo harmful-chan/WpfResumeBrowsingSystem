@@ -14,17 +14,24 @@ namespace WpfResumeBrowsingSystem.ViewModels
 {
     class LoginViewModel : ViewModelBase
     {
-        private static readonly HttpClient _client = new HttpClient();
+        private  HttpClient _client = new HttpClient();
+        private struct UserInfoResult
+        {
+            public string UserName;
+            public string UserPassword;
+        }
+
 
         public LoginViewModel()
         {
             LoginIn = new ComCommand(async p => {
-                KeyValuePair<string, string> pair = new KeyValuePair<string, string>(this.UserId, this.Password);
-                
+
+                string resultStr = this._client.GetStringAsync("http://47.94.162.230:80/api/Data/1?tbname=UserInfo").Result;
+                UserInfoResult result = Newtonsoft.Json.JsonConvert.DeserializeObject<UserInfoResult>(resultStr);
+                if (this.UserId.Equals(result.UserName) && this.Password.Equals(result.UserPassword));
             });
         }
 
-        #region //binding属性
         private string _userId;
 
         public string UserId
@@ -36,17 +43,6 @@ namespace WpfResumeBrowsingSystem.ViewModels
                 this.RaisePropertyChanged("UserId");
             }
         }
-        private async void GetUserMessage(string str)
-        {
-            //数据库搜索UserId，自动补全
-            string result = await _client.GetStringAsync("http://***");
-            if ("" != result)
-            {
-                Dictionary<string, string> pair = JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
-                this.UserId = pair.Keys.ToString();
-                this.Password = pair.Values.ToString();
-            }
-        }
 
         private string _password;
 
@@ -55,13 +51,9 @@ namespace WpfResumeBrowsingSystem.ViewModels
             get { return _password; }
             set { _password = value; this.RaisePropertyChanged("Password"); }
         }
-        #endregion
 
-
-        #region //命令
         public ICommand LoginIn { get; }
 
-        #endregion
 
 
     }
