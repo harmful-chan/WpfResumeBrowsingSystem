@@ -78,7 +78,7 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
             //写入文件判断
             List<KeyValuePair<string, bool>> fileStat = updateFileName.ConvertAll<KeyValuePair<string, bool> >(s => 
             {
-                return new KeyValuePair<string, bool>(s, System.IO.File.Exists(s));
+                return new KeyValuePair<string, bool>(new FileInfo(s).Name, System.IO.File.Exists(s));
             });
 
             return Ok(fileStat);
@@ -95,17 +95,36 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         /// <param name="fileName">文件名.扩展名</param>
         /// <returns>文件表单</returns>
         //GET api/files?filename
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(int id, string fileName = null)
         {
-            if (fileName == null) return NotFound("Error:FileName Is Null");
+            try
+            {
+                if (fileName == null) throw new ArgumentNullException("fileName");
 
-            List<FileInfo> fileInfos = FindFile(
-                new DirectoryInfo(Path.Combine(this._hostingEnvironment.WebRootPath, "images")), fileName.Split('.')[0]);
-            if (fileInfos.Count <= 0) return NotFound("Error:File Not Found");
+                List<FileInfo> fileInfos = FindFile(
+                    new DirectoryInfo(Path.Combine(this._hostingEnvironment.WebRootPath, "images")), fileName.Split('.')[0]);
+                if (fileInfos.Count <= 0) throw new FileNotFoundException(fileName.Split('.')[0]);
 
-            IEnumerable<FileInfo> fileExtenSames = fileInfos.Where(f=>f.Name.Contains(Path.GetExtension(fileName)));    //匹配扩展名相通的文件
-            return Ok(fileExtenSames.ToList().ConvertAll<string>(f=>f.Name));    //返回所有匹配的文件名
+                switch (id)
+                {
+                    case 0:
+                        return Ok(fileInfos.ConvertAll<string>(f => f.Name));    //返回所有匹配的文件名
+                        break;
+                    default:
+                        {
+                            IEnumerable<FileInfo> fileExtenSames = fileInfos.Where(f => f.Name.Contains(Path.GetExtension(fileName)));    //匹配扩展名相通的文件
+                            if(fileExtenSames.Count() > 0) return Ok(fileExtenSames.ToList().ConvertAll<string>(f => f.Name));    //返回所有匹配后缀的文件名
+                            else throw new FileNotFoundException(fileName);
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+            
         }
 
         /// <summary>
@@ -197,7 +216,7 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         private DateTime GetFileUpdateDate(FileInfo fileInfo)
         {
             string[] tmp = fileInfo.Name.Split('.', '_');
-            return DateTime.ParseExact(tmp[tmp.Length - 2], "yyyyMMddhhmmss", CultureInfo.CurrentCulture);
+            return DateTime.ParseExact(tmp[tmp.Length - 2], "yyyyMMddhhmmssfff", CultureInfo.CurrentCulture);
         }
 
         /// <summary>

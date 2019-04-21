@@ -30,17 +30,10 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
         public List<string> DbContentPropertyNames { get; }
 
         /// <summary>
-        /// 数据内容
-        /// </summary>
-        public ResumeBrowingSystemV00Context DbContent { get; }
-
-        /// <summary>
         /// 构造函数
         /// </summary>
-        public DataController(ResumeBrowingSystemV00Context dbcontent)
+        public DataController()
         {
-            this.DbContent = dbcontent;
-
             this.DbContentPropertyInfos = new List<PropertyInfo>(
                 typeof(ResumeBrowingSystemV00Context).GetProperties(
                     BindingFlags.Instance |    //包含实例成员 
@@ -82,14 +75,16 @@ namespace WpfResumeBrowsingSystem.WebApi.Controllers
                             if (!DbContentPropertyInfos.Exists(p => p.Name == tbName)) throw new AggregateException("Table Name Not Found");
 
                             //返表 Json数据
-                            IList resultList = null;
+                            using (ResumeBrowingSystemV00Context db = new ResumeBrowingSystemV00Context())
+                            {
+                                IList resultList = null;
 
-                            if ("Staffs" == tbName) resultList = ExecuteSql<Staffs, ResumeBrowingSystemV00Context>(this.DbContent, sql);
-                            else if ("Experiences" == tbName) resultList = ExecuteSql<Experiences, ResumeBrowingSystemV00Context>(this.DbContent, sql);
+                                if ("Staffs" == tbName) resultList = ExecuteSql<Staffs, ResumeBrowingSystemV00Context>(db, sql);
+                                else if ("Experiences" == tbName) resultList = ExecuteSql<Experiences, ResumeBrowingSystemV00Context>(db, sql);
 
-
-                            if (resultList == null) throw new AggregateException("Sql Fail");
-                            return Ok(resultList);
+                                if (resultList == null) throw new AggregateException("Sql Fail");
+                                return Ok(resultList);
+                            }
                         }
                         break;
                 }

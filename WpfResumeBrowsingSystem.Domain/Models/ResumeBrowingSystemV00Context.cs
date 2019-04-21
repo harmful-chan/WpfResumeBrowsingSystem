@@ -15,18 +15,18 @@ namespace WpfResumeBrowsingSystem.Domain.Models
         public ResumeBrowingSystemV00Context(DbContextOptions<ResumeBrowingSystemV00Context> options, string v)
             : base(options)
         {
+
         }
-
-        public virtual DbSet<Experiences> Experiences { get; set; }
-        public virtual DbSet<Staffs> Staffs { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseMySQL();
+                optionsBuilder.UseMySQL("server=47.94.162.230;user id=root;password=123456;database=ResumeBrowingSystemV00;");
             }
         }
+
+        public virtual DbSet<Experiences> Experiences { get; set; }
+        public virtual DbSet<Staffs> Staffs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

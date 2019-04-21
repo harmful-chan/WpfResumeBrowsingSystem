@@ -43,12 +43,6 @@ namespace WpfResumeBrowsingSystem.WebApi
                 c.IncludeXmlComments(xmlPath);
             });
 
-
-            services.AddDbContext<ResumeBrowingSystemV00Context>(option =>
-            {
-                option.UseMySQL(Configuration.GetConnectionString(RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "MySql:Server" : "MySql:Localhost"));
-            });
-                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
