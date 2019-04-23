@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WpfResumeBrowsingSystem.Resources.Styles">
-    <Color x:Key="Default.Color.LV0">#eaeaea</Color>
-    <Color x:Key="Default.Color.LV1">#00bdaa</Color>
-    <Color x:Key="Default.Color.LV2">#257aa6</Color>
-    <Color x:Key="Default.Color.LV3">#621e81</Color>
+    <Color x:Key="Default.Color.LV0">#e8e8e8</Color>
+    <Color x:Key="Default.Color.LV1">#5588a3</Color>
+    <Color x:Key="Default.Color.LV2">#145374</Color>
+    <Color x:Key="Default.Color.LV3">#00334e</Color>
 </ResourceDictionary>

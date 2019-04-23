@@ -8,27 +8,18 @@
         xmlns:ctl="clr-namespace:WpfResumeBrowsingSystem.Controls"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
-
-        Title="简历管理系统"
+        Title="信息浏览系统"
         Icon="{StaticResource 启蒙}"
         DataContext="{DynamicResource MainViewModel}"
-        Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={StaticResource Reduce200}}" 
-        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource Reduce200}}" 
+        Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={StaticResource Reduce50}}" 
+        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource Reduce50}}" 
         WindowStartupLocation="CenterScreen"
-        WindowState="Normal"
-         Style="{StaticResource WindowStyle}">
+        WindowState="Normal">
     <Window.Resources>
-        
-        <SolidColorBrush x:Key="Background.Color" Color="{StaticResource Default.Color.LV0}"/>
-        <SolidColorBrush x:Key="Panel.Color" Color="{StaticResource Default.Color.LV1}"/>
-        <LinearGradientBrush x:Key="Title.Color" StartPoint="0 0" EndPoint="0 1">
-            <GradientStop Color="{StaticResource Default.Color.LV0}" Offset="0"/>
-            <GradientStop Color="{StaticResource Default.Color.LV2}" Offset="0"/>
-            <GradientStop Color="{StaticResource Default.Color.LV2}" Offset="1"/>
-            <GradientStop Color="{StaticResource Default.Color.LV0}" Offset="1"/>
-        </LinearGradientBrush>
+
+
     </Window.Resources>
-    <Grid>
+    <!--<Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Height="28" x:Name="dock" >
                 <MenuItem Header="文件(F)" FontSize="18">
@@ -47,7 +38,7 @@
                 <Border Grid.Row="0" Background="{StaticResource Title.Color}">
                     <StackPanel Margin="20 10 0 0" Orientation="Horizontal">
                         <Image VerticalAlignment="Center" Source="{DynamicResource 启蒙}"></Image>
-                        <TextBlock Text="简历浏览系统"
+                        <TextBlock Text="信息浏览系统"
                            FontFamily="微软雅黑" FontSize="50"
                             Foreground="{StaticResource Background.Color}"
                            VerticalAlignment="Center"></TextBlock>
@@ -92,6 +83,38 @@
             </Grid>
         </DockPanel>
 
+    </Grid>-->
+    <Grid >
+        <Expander x:Name="expMain" Tag="200" Style="{StaticResource ExpanderLeftStyle}">
+            <Expander.Header>
+                <Expander Margin="10" x:Name="expSub" Style="{StaticResource ExpanderDownStyle}" Tag="600">
+                    <Expander.Header>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" BorderBrush="Black" BorderThickness="1"/>
+                            <ToggleButton Grid.Row="0" Grid.Column="0" IsChecked="{Binding IsExpanded, ElementName=expMain, Mode=TwoWay}"/>
+                            <ToggleButton Grid.Row="2" Grid.Column="2" IsChecked="{Binding IsExpanded, ElementName=expSub, Mode=TwoWay}"/>
+                        </Grid>
+
+                    </Expander.Header>
+                    <Expander.Content>
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="0 10 0 0"/>
+                    </Expander.Content>
+                </Expander>
+            </Expander.Header>
+            <Expander.Content>
+                <Border Margin="10 10 0 10" BorderBrush="Black" BorderThickness="1"/>
+            </Expander.Content>
+        </Expander>
     </Grid>
 
 </Window>

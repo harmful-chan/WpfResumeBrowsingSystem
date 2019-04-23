@@ -7,11 +7,10 @@
         xmlns:vm="clr-namespace:WpfResumeBrowsingSystem.ViewModels"
         xmlns:cvt="clr-namespace:WpfResumeBrowsingSystem.Converter"
         mc:Ignorable="d"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        Style="{StaticResource ToolWindowStyle}"
-        DataContext="{StaticResource LoginViewModel}"
+        WindowStyle="SingleBorderWindow"
+        WindowState="Normal"
         WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource LoginViewModel}"
         Title="Sign In" Height="600" Width="400"
         MaxHeight="600" MaxWidth="400"
         MinHeight="600" MinWidth="400"
@@ -20,6 +19,7 @@
         
         <SolidColorBrush x:Key="Background.Color" Color="{StaticResource Default.Color.LV0}"/>
         <SolidColorBrush x:Key="Text.Color" Color="{StaticResource Default.Color.LV1}"/>
+        <SolidColorBrush x:Key="Text.Border.Color" Color="{StaticResource Default.Color.LV2}"/>
         <SolidColorBrush x:Key="Button.Color" Color="{StaticResource Default.Color.LV3}"/>
         <cvt:HalfConverter x:Key="HalfCon"/>
 
@@ -48,7 +48,7 @@
                    Margin="10 0 0 0"
                    Text="User Id:" FontWeight="Black"  FontFamily="Consolas" FontSize="15"/>
         <TextBox Grid.Row="3" Grid.Column="1" 
-                 x:Name="t1"
+                 x:Name="t1" BorderBrush="{StaticResource TextBox.Border.Color}"
                  Text="{Binding UserId}"
                  Style="{StaticResource TextBoxStyle}"
                  Tag="User Id"/>
@@ -58,7 +58,7 @@
                    Margin="10 0 0 0"
                    Text="Password:" FontWeight="Black"  FontFamily="Consolas" FontSize="15"/>
         <TextBox Grid.Row="5" Grid.Column="1" 
-                 x:Name="t2"
+                 x:Name="t2" BorderBrush="{StaticResource TextBox.Border.Color}"
                  Text="{Binding Password}"
                  Style="{StaticResource TextBoxStyle}"
                  Tag="Password"/>

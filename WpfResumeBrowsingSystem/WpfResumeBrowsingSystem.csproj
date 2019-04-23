@@ -97,6 +97,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\ExpanderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\HeaderedContentControlStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,6 +147,7 @@
     <Compile Include="Converter\ComConverter.cs" />
     <Compile Include="Converter\HalfConverter.cs" />
     <Compile Include="Converter\ReduceConverter.cs" />
+    <Compile Include="Converter\StoDConverter.cs" />
     <Compile Include="Globe\CommandBase.cs" />
     <Compile Include="Globe\ViewModelBase.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

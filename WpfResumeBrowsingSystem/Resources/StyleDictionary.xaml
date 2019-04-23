@@ -9,6 +9,7 @@
         <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
         <ResourceDictionary Source="Styles/ToolWindowStyle.xaml"/>
         <ResourceDictionary Source="Styles/TitleBaseStyle.xaml"/>
+        <ResourceDictionary Source="Styles/ExpanderStyle.xaml"/>
         
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:WpfResumeBrowsingSystem"
              xmlns:vm="clr-namespace:WpfResumeBrowsingSystem.ViewModels"
              xmlns:cvt="clr-namespace:WpfResumeBrowsingSystem.Converter"
-             StartupUri="Views/LoginView.xaml">
+             StartupUri="Views/MainView.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,6 +14,7 @@
             <vm:MainViewModel x:Key="MainViewModel"/>
             <vm:LoginViewModel x:Key="LoginViewModel"/>
             <cvt:ReduceConverter x:Key="Reduce200" Reduce="200"/>
+            <cvt:ReduceConverter x:Key="Reduce50" Reduce="50"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

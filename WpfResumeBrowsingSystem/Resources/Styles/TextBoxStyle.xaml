@@ -9,7 +9,6 @@
     <SolidColorBrush x:Key="TextBox.Border.Color" Color="{StaticResource Default.Color.LV1}"></SolidColorBrush>
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource TextBox.Border.Color}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -19,7 +18,6 @@
         <Setter Property="FontSize" Value="20"/>
 
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="AllowDrop" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
@@ -36,14 +34,14 @@
                             <Border.Effect>
                                 <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.2" />
                             </Border.Effect>
-                            <ScrollViewer Margin="10 0 0 0" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            <ScrollViewer Margin="30 0 0 0" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Border>
                         <TextBlock x:Name="HintText" Text="{TemplateBinding Tag}" 
                                    FontSize="18" FontWeight="Bold" Opacity="1"
-                                   Foreground="Gray" Background="Transparent"
+                                   Foreground="#e8e8e8"  Background="Transparent"
                                    HorizontalAlignment="Left" VerticalAlignment="Center"
                                    Visibility="Hidden"
-                                   Margin="10 0 0 0"/>
+                                   Margin="30 0 0 0"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="true">

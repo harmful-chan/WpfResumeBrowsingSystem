@@ -21,33 +21,5 @@ namespace WpfResumeBrowsingSystem.Globe
                 this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
-
-        public ICommand Closed { get; } =
-            new ComCommand(p =>
-            {
-                ((Window)p).Close();
-            });
-
-        public ICommand Minimize { get; } =
-            new ComCommand(p =>
-            {
-                ((Window)p).WindowState = WindowState.Minimized;
-            });
-
-        public ICommand Change { get; } =
-            new ComCommand(p =>
-            {
-                Window tmp = p as Window;
-                if (tmp.WindowState == WindowState.Maximized)
-                    tmp.WindowState = WindowState.Normal;
-                else tmp.WindowState = WindowState.Maximized;
-            });
-
-        public ICommand Move { get; } =
-            new ComCommand(p =>
-            {
-                ((Window)p).DragMove();
-            });
     }
 }
